@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -33,10 +35,13 @@ public class ClienteControllerV2 {
                 .body(clienteService.salvar(clienteRequestDTO));
     }
 
-    @GetMapping //Adicionando o endpoint para listar clientes
-    public ResponseEntity<List<ClienteResponseDTO>> listarClientes() {
+
+    @GetMapping
+    public ResponseEntity<Map<String, List<ClienteResponseDTO>>> listarClientes() {
         List<ClienteResponseDTO> clientes = clienteService.listar();
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        Map<String, List<ClienteResponseDTO>> response = new HashMap<>();
+        response.put("clients", clientes);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
