@@ -22,6 +22,14 @@ public record ClienteRequestDTO(
         String email,
         @NotBlank(message = "O campo endereco é obrigatório.")
         String endereco,
+        @NotBlank(message = "O campo Numero é obrigatório.")
+        String Numero,
+        @NotBlank(message = "O campo Bairro é obrigatório.")
+        String Bairro,
+        @NotBlank(message = "O campo Cidade é obrigatório.")
+        String Cidade,
+        @NotBlank(message = "O campo Uf é obrigatório.")
+        String Uf,
         @NotBlank(message = "O campo CEP é obrigatório.")
         String Cep,
         @NotBlank(message = "O campo Celular é obrigatório.")

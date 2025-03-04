@@ -36,8 +36,16 @@ public class Cliente {
     @Column
     private String endereco;
 
+    @Column String Numero;
+
     @Column
     private String Cep;
+
+    @Column String Bairro;
+
+    @Column String Cidade;
+
+    @Column String Uf;
 
     @Column
     private String celular;
@@ -159,5 +167,37 @@ public class Cliente {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public String getNumero() {
+        return Numero;
+    }
+
+    public void setNumero(String numero) {
+        Numero = numero;
+    }
+
+    public String getBairro() {
+        return Bairro;
+    }
+
+    public void setBairro(String bairro) {
+        Bairro = bairro;
+    }
+
+    public String getCidade() {
+        return Cidade;
+    }
+
+    public void setCidade(String cidade) {
+        Cidade = cidade;
+    }
+
+    public String getUf() {
+        return Uf;
+    }
+
+    public void setUf(String uf) {
+        Uf = uf;
     }
 }
