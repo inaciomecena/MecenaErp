@@ -7,11 +7,7 @@ import java.util.UUID;
 public record ClienteResponseDTO(
         UUID id,
         Status status,
-        String nome,
-        String cpf,
-        String criadoPeloUsuario,
-        String criadoDataEHora,
-        String editadoPeloUsuario,
-        String editadoDataEHora
+        String clienteNome, String clienteCpf, String nome,
+        String cpf
 ) {
 }

@@ -5,15 +5,16 @@ import br.com.mecena.MecenaErp.dtos.response.ClienteResponseDTO;
 import br.com.mecena.MecenaErp.entities.Cliente;
 import br.com.mecena.MecenaErp.entities.enums.Status;
 import br.com.mecena.MecenaErp.exceptions.ClienteJaExistenteException;
+import br.com.mecena.MecenaErp.exceptions.ClienteNaoEncontradoException;
 import br.com.mecena.MecenaErp.repositories.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
-
-import static org.hibernate.Hibernate.map;
 
 @Service
 public class ClienteService {
@@ -33,15 +34,14 @@ public class ClienteService {
         clienteRepository.save(clienteEntity);
 
 
-        return new ClienteResponseDTO(clienteEntity.getId(),
+        return new ClienteResponseDTO(
+                clienteEntity.getId(),
                 clienteEntity.getStatus(),
                 clienteEntity.getNome(),
                 clienteEntity.getCpf(),
                 clienteEntity.getCriadoPeloUsuario(),
-                clienteEntity.getCriadoDataEHora(),
-                clienteEntity.getEditadoPeloUsuario(),
-                clienteEntity.getEditadoDataEHora()
-                );
+                clienteEntity.getCriadoDataEHora()
+        );
     }
 
     private void verificarCpfDuplicado(final ClienteRequestDTO clienteRequestDTO) {
@@ -59,14 +59,29 @@ public class ClienteService {
                 .map(cliente -> new ClienteResponseDTO(
                         cliente.getId(),
                         cliente.getStatus(),
-                        cliente.getNome(),
-                        cliente.getCpf(),
-                        cliente.getCriadoPeloUsuario(),
-                        cliente.getCriadoDataEHora(),
-                        cliente.getEditadoPeloUsuario(),
-                        cliente.getEditadoDataEHora()
+                        cliente.getNome(), cliente.getCpf(), cliente.getNome(),
+                        cliente.getCpf()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public ClienteResponseDTO atualizar(UUID id, ClienteRequestDTO clienteRequestDTO) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado com o ID: " + id));
+
+        BeanUtils.copyProperties(clienteRequestDTO, cliente);
+        cliente.setEditadoDataEHora(String.valueOf(LocalDateTime.now())); // Atualiza a data e hora de edição
+
+        clienteRepository.save(cliente);
+
+        return new ClienteResponseDTO(
+                cliente.getId(),
+                cliente.getStatus(),
+                cliente.getNome(),
+                cliente.getCpf(),
+                cliente.getCriadoPeloUsuario(),
+                cliente.getCriadoDataEHora()
+        );
     }
 
 }

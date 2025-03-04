@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -36,6 +37,12 @@ public class ClienteControllerV2 {
     public ResponseEntity<List<ClienteResponseDTO>> listarClientes() {
         List<ClienteResponseDTO> clientes = clienteService.listar();
         return new ResponseEntity<>(clientes, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}") // Adicionando o endpoint para atualizar clientes
+    public ResponseEntity<ClienteResponseDTO> atualizarCliente(@PathVariable UUID id, @RequestBody ClienteRequestDTO clienteRequestDTO) {
+        ClienteResponseDTO clienteResponseDTO = clienteService.atualizar(id, clienteRequestDTO);
+        return new ResponseEntity<>(clienteResponseDTO, HttpStatus.OK);
     }
 
 }
