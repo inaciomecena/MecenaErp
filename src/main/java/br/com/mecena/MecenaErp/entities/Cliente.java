@@ -3,7 +3,6 @@ package br.com.mecena.MecenaErp.entities;
 import br.com.mecena.MecenaErp.entities.enums.Status;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.UUID;
@@ -16,16 +15,7 @@ public class Cliente {
     @Id
 //    AUTO - gerado de forma automatica
     @GeneratedValue(strategy = GenerationType.AUTO)
-//Identificador Único Universal
 
-//UUId são identificadores únicos que podem ser gerados em qualquer lugar
-// são próprios para arquiteturas distribuídas, evitando conflitos que gerariam
-// se fossem sequenciais
-
-// Ele possui alta probabilidade de ser único, mesmo se gerado em sistemas diferentes
-
-//    Permite trabalhar com UUID no mysql e h2
-//    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
     @Column(nullable = false, length = 50)
@@ -47,6 +37,12 @@ public class Cliente {
     private String endereco;
 
     @Column
+    private String Cep;
+
+    @Column
+    private String celular;
+
+    @Column
     private String criadoPeloUsuario;
 
     @Column
@@ -58,7 +54,8 @@ public class Cliente {
 
     @Column
     @UpdateTimestamp
-    private  String editadoDataEHora;
+    private String editadoDataEHora;
+
 
     public UUID getId() {
         return id;
@@ -146,5 +143,21 @@ public class Cliente {
 
     public void setEditadoDataEHora(String editadoDataEHora) {
         this.editadoDataEHora = editadoDataEHora;
+    }
+
+    public String getCep() {
+        return Cep;
+    }
+
+    public void setCep(String cep) {
+        Cep = cep;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 }
