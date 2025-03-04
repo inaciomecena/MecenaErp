@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.hibernate.Hibernate.map;
 
 @Service
 public class ClienteService {
@@ -32,6 +35,8 @@ public class ClienteService {
 
         return new ClienteResponseDTO(clienteEntity.getId(),
                 clienteEntity.getStatus(),
+                clienteEntity.getNome(),
+                clienteEntity.getCpf(),
                 clienteEntity.getCriadoPeloUsuario(),
                 clienteEntity.getCriadoDataEHora(),
                 clienteEntity.getEditadoPeloUsuario(),
@@ -47,5 +52,21 @@ public class ClienteService {
         }
     }
 
+    public List<ClienteResponseDTO> listar() {
+        List<Cliente> clientes = clienteRepository.findAll();
+
+        return clientes.stream()
+                .map(cliente -> new ClienteResponseDTO(
+                        cliente.getId(),
+                        cliente.getStatus(),
+                        cliente.getNome(),
+                        cliente.getCpf(),
+                        cliente.getCriadoPeloUsuario(),
+                        cliente.getCriadoDataEHora(),
+                        cliente.getEditadoPeloUsuario(),
+                        cliente.getEditadoDataEHora()
+                ))
+                .collect(Collectors.toList());
+    }
 
 }

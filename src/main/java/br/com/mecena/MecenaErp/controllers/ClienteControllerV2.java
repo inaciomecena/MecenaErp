@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/api/v2/clientes")
@@ -32,6 +32,10 @@ public class ClienteControllerV2 {
                 .body(clienteService.salvar(clienteRequestDTO));
     }
 
-
+    @GetMapping //Adicionando o endpoint para listar clientes
+    public ResponseEntity<List<ClienteResponseDTO>> listarClientes() {
+        List<ClienteResponseDTO> clientes = clienteService.listar();
+        return new ResponseEntity<>(clientes, HttpStatus.OK);
+    }
 
 }

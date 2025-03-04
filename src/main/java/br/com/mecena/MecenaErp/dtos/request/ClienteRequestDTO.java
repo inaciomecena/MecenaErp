@@ -17,15 +17,15 @@ public record ClienteRequestDTO(
         @NotBlank(message = "O campo endereco é obrigatório.")
         String endereco,
         @NotBlank(message = "O campo Numero é obrigatório.")
-        String Numero,
+        String numero,
         @NotBlank(message = "O campo Bairro é obrigatório.")
-        String Bairro,
+        String bairro,
         @NotBlank(message = "O campo Cidade é obrigatório.")
-        String Cidade,
+        String cidade,
         @NotBlank(message = "O campo Uf é obrigatório.")
-        String Uf,
+        String uf,
         @NotBlank(message = "O campo CEP é obrigatório.")
-        String Cep,
+        String cep,
         @NotBlank(message = "O campo Celular é obrigatório.")
         String celular,
         @Min(message = "A idade mínima precisa ser igual a 18 anos", value = 18) @Max(message = "A idade máxima precisa ser igual a 120 anos", value = 120)
