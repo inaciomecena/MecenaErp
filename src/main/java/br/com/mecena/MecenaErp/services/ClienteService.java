@@ -36,11 +36,12 @@ public class ClienteService {
 
         return new ClienteResponseDTO(
                 clienteEntity.getId(),
-                clienteEntity.getStatus(),
                 clienteEntity.getNome(),
                 clienteEntity.getCpf(),
                 clienteEntity.getCriadoPeloUsuario(),
-                clienteEntity.getCriadoDataEHora()
+                clienteEntity.getCriadoDataEHora(),
+                clienteEntity.getEmail(),
+                clienteEntity.getCidade()
         );
     }
 
@@ -58,10 +59,12 @@ public class ClienteService {
         return clientes.stream()
                 .map(cliente -> new ClienteResponseDTO(
                         cliente.getId(),
-                        cliente.getStatus(),
-                        cliente.getNome(), cliente.getCpf(), cliente.getNome(),
-                        cliente.getCpf()
-                ))
+                        cliente.getNome(),
+                        cliente.getCpf(),
+                        cliente.getCriadoPeloUsuario(),
+                        cliente.getCriadoDataEHora(),
+                        cliente.getEmail(),
+                        cliente.getCidade()))
                 .collect(Collectors.toList());
     }
 
@@ -76,11 +79,14 @@ public class ClienteService {
 
         return new ClienteResponseDTO(
                 cliente.getId(),
-                cliente.getStatus(),
                 cliente.getNome(),
                 cliente.getCpf(),
                 cliente.getCriadoPeloUsuario(),
-                cliente.getCriadoDataEHora()
+                cliente.getCriadoDataEHora(),
+                cliente.getEmail(),
+                cliente.getCidade()
+
+
         );
     }
 
@@ -89,6 +95,23 @@ public class ClienteService {
                 .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado com o ID: " + id));
 
         clienteRepository.delete(cliente);
+    }
+
+    public ClienteResponseDTO buscarPorId(UUID id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado com o ID: " + id));
+
+        return new ClienteResponseDTO(
+                cliente.getId(),
+                cliente.getNome(),
+                cliente.getCpf(),
+                cliente.getCriadoPeloUsuario(),
+                cliente.getCriadoDataEHora(),
+                cliente.getEmail(),
+                cliente.getCidade()
+
+
+        );
     }
 
 }

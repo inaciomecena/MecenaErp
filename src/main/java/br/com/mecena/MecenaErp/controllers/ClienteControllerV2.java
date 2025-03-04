@@ -39,6 +39,12 @@ public class ClienteControllerV2 {
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> buscarClientePorId(@PathVariable UUID id) {
+        ClienteResponseDTO clienteResponseDTO = clienteService.buscarPorId(id);
+        return new ResponseEntity<>(clienteResponseDTO, HttpStatus.OK);
+    }
+
     @PutMapping("/{id}") // Adicionando o endpoint para atualizar clientes
     public ResponseEntity<ClienteResponseDTO> atualizarCliente(@PathVariable UUID id, @RequestBody ClienteRequestDTO clienteRequestDTO) {
         ClienteResponseDTO clienteResponseDTO = clienteService.atualizar(id, clienteRequestDTO);
