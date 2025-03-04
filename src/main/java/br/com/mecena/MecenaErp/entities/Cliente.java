@@ -17,49 +17,37 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private UUID id;
-
     @Column(nullable = false, length = 50)
     private String nome;
-
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
-
     @Column
     private String email;
-
     @Column
     private Integer idade;
-
     @Column
     private Status status;
-
     @Column
     private String endereco;
-
-    @Column String Numero;
-
     @Column
     private String Cep;
-
-    @Column String Bairro;
-
-    @Column String Cidade;
-
-    @Column String Uf;
-
     @Column
     private String celular;
-
+    @Column
+    String Numero;
+    @Column
+    String Bairro;
+    @Column
+    String Cidade;
+    @Column
+    String Uf;
     @Column
     private String criadoPeloUsuario;
-
     @Column
     @CreationTimestamp
     private String criadoDataEHora;
-
     @Column
     private String editadoPeloUsuario;
-
     @Column
     @UpdateTimestamp
     private String editadoDataEHora;
@@ -121,38 +109,6 @@ public class Cliente {
         this.status = status;
     }
 
-    public String getCriadoPeloUsuario() {
-        return criadoPeloUsuario;
-    }
-
-    public void setCriadoPeloUsuario(String criadoPeloUsuario) {
-        this.criadoPeloUsuario = criadoPeloUsuario;
-    }
-
-    public String getCriadoDataEHora() {
-        return criadoDataEHora;
-    }
-
-    public void setCriadoDataEHora(String criadoDataEHora) {
-        this.criadoDataEHora = criadoDataEHora;
-    }
-
-    public String getEditadoPeloUsuario() {
-        return editadoPeloUsuario;
-    }
-
-    public void setEditadoPeloUsuario(String editadoPeloUsuario) {
-        this.editadoPeloUsuario = editadoPeloUsuario;
-    }
-
-    public String getEditadoDataEHora() {
-        return editadoDataEHora;
-    }
-
-    public void setEditadoDataEHora(String editadoDataEHora) {
-        this.editadoDataEHora = editadoDataEHora;
-    }
-
     public String getCep() {
         return Cep;
     }
@@ -199,5 +155,37 @@ public class Cliente {
 
     public void setUf(String uf) {
         Uf = uf;
+    }
+
+    public String getCriadoPeloUsuario() {
+        return criadoPeloUsuario;
+    }
+
+    public void setCriadoPeloUsuario(String criadoPeloUsuario) {
+        this.criadoPeloUsuario = criadoPeloUsuario;
+    }
+
+    public String getCriadoDataEHora() {
+        return criadoDataEHora;
+    }
+
+    public void setCriadoDataEHora(String criadoDataEHora) {
+        this.criadoDataEHora = criadoDataEHora;
+    }
+
+    public String getEditadoPeloUsuario() {
+        return editadoPeloUsuario;
+    }
+
+    public void setEditadoPeloUsuario(String editadoPeloUsuario) {
+        this.editadoPeloUsuario = editadoPeloUsuario;
+    }
+
+    public String getEditadoDataEHora() {
+        return editadoDataEHora;
+    }
+
+    public void setEditadoDataEHora(String editadoDataEHora) {
+        this.editadoDataEHora = editadoDataEHora;
     }
 }

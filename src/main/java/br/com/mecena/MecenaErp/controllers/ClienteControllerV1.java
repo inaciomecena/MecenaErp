@@ -45,10 +45,7 @@ public class ClienteControllerV1 {
         var clienteDTOOptional = clienteRepository.findById(id);
 
         return clienteDTOOptional
-// O map é utilizado para realizar transformação de dados, aqui estamos transformando
-// o Optional<Cliente> em uma resposta HTTP.
-// Se o cliente existir, atualiza no banco de dados e retorna uma resposta 200 (OK)
-// com o cliente atualizado. Caso contrário, retorna uma resposta 404 (Not Found).
+
                 .map(c -> ResponseEntity.ok(clienteRepository.save(cliente)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
 

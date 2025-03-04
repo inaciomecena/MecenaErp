@@ -10,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClienteService {
     @Autowired
@@ -44,4 +46,6 @@ public class ClienteService {
             throw new ClienteJaExistenteException("Cliente com o cpf " +numeroCpf + " já existe.");
         }
     }
+
+
 }

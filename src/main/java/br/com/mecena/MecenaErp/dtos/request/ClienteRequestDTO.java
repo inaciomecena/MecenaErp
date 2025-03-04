@@ -1,16 +1,10 @@
 package br.com.mecena.MecenaErp.dtos.request;
 
-//Gera automaticamente (getters, equals, hashCode, toString)
-
-//Imutáveis: Uma vez criado, o valor de um record não pode ser alterado
-
-//Sintaxe enxuta
-
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 public record ClienteRequestDTO(
-//         Garante que o atributo não seja nulo e tenha ao menos um caractere não branco.
+
         @NotBlank(message = "O campo nome é obrigatório.")
         @Size(message = "O campo nome deve ter pelo menos 3 caracteres.", min = 3)
         String nome,
