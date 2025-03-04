@@ -84,4 +84,11 @@ public class ClienteService {
         );
     }
 
+    public void deletar(UUID id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado com o ID: " + id));
+
+        clienteRepository.delete(cliente);
+    }
+
 }

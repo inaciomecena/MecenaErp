@@ -45,4 +45,11 @@ public class ClienteControllerV2 {
         return new ResponseEntity<>(clienteResponseDTO, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}") // Adicionando o endpoint para deletar clientes
+    public ResponseEntity<Void> deletarCliente(@PathVariable UUID id) {
+        clienteService.deletar(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Retorna 204 No Content
+
+    }
+
 }
