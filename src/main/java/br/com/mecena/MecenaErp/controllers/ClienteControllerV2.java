@@ -4,25 +4,17 @@ import br.com.mecena.MecenaErp.dtos.request.ClienteRequestDTO;
 import br.com.mecena.MecenaErp.dtos.response.ClienteResponseDTO;
 import br.com.mecena.MecenaErp.dtos.response.ClienteResumoResponseDTO;
 import br.com.mecena.MecenaErp.dtos.response.PagedResponse;
-import br.com.mecena.MecenaErp.entities.Cliente;
 import br.com.mecena.MecenaErp.services.ClienteService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-
 
 @RestController
 @RequestMapping("/api/v2/clientes")
