@@ -16,7 +16,7 @@ public class Cliente {
 //    AUTO - gerado de forma automatica
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private UUID id;
+     UUID id;
     @Column(nullable = false, length = 50)
     private String nome;
     @Column(nullable = false, unique = true, length = 11)
